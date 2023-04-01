@@ -17,9 +17,11 @@ public class Noeud {
         return T;
     }
     public Boolean setO(int i, int j){
-        if(T[i][j] == ""){
-            T[i][j]="O";
-            return true;
+        if (i < 3 && j < 3 && i >= 0 && j >= 0){
+            if(T[i][j] == ""){
+                T[i][j]="O";
+                return true;
+            }
         }
         return false;
     }
@@ -30,35 +32,35 @@ public class Noeud {
         return this;
     }
 
-    public boolean TestTerminaison(){
+    public int TestTerminaison(){
         // diagonal
         if(T[0][0] == T[1][1] && T[1][1] == T[2][2] && T[0][0] != ""){
             System.out.println("winner : "+T[1][1]);
-            return true;
+            return 1;
         }
         if(T[0][2] == T[1][1] && T[1][1] == T[2][0] && T[1][1] != ""){
             System.out.println("winner : "+T[1][1]);
-            return true;
+            return 1;
         }
         // lignes
         for (int i = 0; i < 3; i++){
             if(T[i][0] == T[i][1] && T[i][1] == T[i][2] && T[i][2] != ""){
                 System.out.println("winner : "+T[0][0]);
-                return true;
+                return 1;
             }
         }
         // collones
         for (int i = 0; i < 3; i++){
             if(T[0][i] == T[1][i] && T[1][i] == T[2][i] && T[2][i] != ""){
                 System.out.println("winner : "+T[0][0]);
-                return true;
+                return 1;
             }
         }
         if (Remplie()){
             System.out.println("Egalité");
-            return true;
+            return 0;
         }
-        return false;
+        return -1;
     }
 
     public List<Noeud> successeur(String str){

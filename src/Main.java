@@ -10,7 +10,7 @@ public class Main {
         int j;
 
         n.Afficher();
-        while (!n.TestTerminaison()){
+        while (n.TestTerminaison() == -1){
             do {
                 System.out.println("inserer dans une case vide");
                 System.out.print("i : ");
@@ -20,6 +20,7 @@ public class Main {
                 j = input.nextInt();
                 System.out.println();
             }while (!n.setO(i,j));
+            if(n.TestTerminaison() == 0) break;
             n.setEtat(MINIMAX(n));
             n.Afficher();
         }
