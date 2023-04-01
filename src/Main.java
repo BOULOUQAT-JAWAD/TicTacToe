@@ -1,19 +1,24 @@
 import java.util.List;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
 
         Noeud n = new Noeud();
-        String[][] T = new String[3][3];
-        for (int i = 0 ; i < 3; i++)
-            for (int j = 0 ; j < 3; j++)
-                T[i][j] = "";
-        T[0][0] = "X";
-        n.setEtat(T);
-        int i = 0;
-        while(i < 5){
+        Scanner input = new Scanner(System.in);
+        int i;
+        int j;
+
+        while (!n.TestTerminaison()){
+            n.Afficher();
+            System.out.print("i : ");
+            i = input.nextInt();
+            System.out.println();
+            System.out.print("j : ");
+            j = input.nextInt();
+            System.out.println();
+            n.setO(i,j);
             n.setEtat(MINIMAX(n));
-            i++;
         }
     }
     static String[][] MINIMAX(Noeud noeud){
@@ -21,7 +26,7 @@ public class Main {
         Noeud MeilleurCoup = new Noeud();
 
         int maxi = (int)Double.NEGATIVE_INFINITY;
-        List<Noeud> fils = noeud.successeur("O");
+        List<Noeud> fils = noeud.successeur("X");
         for (Noeud f: fils) {
             int valeur_fils = ValeurMINI(f);
             if(valeur_fils > maxi){

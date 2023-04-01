@@ -16,7 +16,7 @@ public class Noeud {
     public String[][] getT() {
         return T;
     }
-
+    public void setO(int i, int j){T[i][j]="O";}
     public Noeud setEtat(String[][] tableau){
         for (int i = 0; i < 3; i++)
             for (int j = 0; j < 3; j++)
@@ -61,18 +61,6 @@ public class Noeud {
         Noeud n = new Noeud();
         n.setEtat(this.getT());
 
-        //premier fils
-        outerloop:
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                if (n.T[i][j] == "") {
-                    n.T[i][j] = str;
-                    fils.add(n);
-                    break outerloop;
-                }
-            }
-        }
-
         for (int k = 0 ; k < 9; k++){
             outerloop:
             for (int i = 0; i < 3; i++){
@@ -87,9 +75,11 @@ public class Noeud {
                         int check = 0;
                         for (Noeud f: fils) {
                             if (stringEqual(f.getT(),child.getT()))
-                                check =1;
+                                check = 1;
                         }
-                        if (check == 0) fils.add((new Noeud()).setEtat(child.getT()));
+                        Noeud nouveau = new Noeud();
+                        nouveau.setEtat(child.getT());
+                        if (check == 0) fils.add(nouveau);
 
                         break outerloop;
                     }
@@ -101,7 +91,7 @@ public class Noeud {
     public boolean Remplie(){
         for (int i = 0 ; i < 3; i++)
             for (int j = 0 ; j < 3; j++)
-                if(T[i][j] == null)
+                if(T[i][j] == "")
                     return false;
         return true;
     }
