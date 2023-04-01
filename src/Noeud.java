@@ -16,7 +16,13 @@ public class Noeud {
     public String[][] getT() {
         return T;
     }
-    public void setO(int i, int j){T[i][j]="O";}
+    public Boolean setO(int i, int j){
+        if(T[i][j] == ""){
+            T[i][j]="O";
+            return true;
+        }
+        return false;
+    }
     public Noeud setEtat(String[][] tableau){
         for (int i = 0; i < 3; i++)
             for (int j = 0; j < 3; j++)

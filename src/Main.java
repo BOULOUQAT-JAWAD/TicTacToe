@@ -9,16 +9,19 @@ public class Main {
         int i;
         int j;
 
+        n.Afficher();
         while (!n.TestTerminaison()){
-            n.Afficher();
-            System.out.print("i : ");
-            i = input.nextInt();
-            System.out.println();
-            System.out.print("j : ");
-            j = input.nextInt();
-            System.out.println();
-            n.setO(i,j);
+            do {
+                System.out.println("inserer dans une case vide");
+                System.out.print("i : ");
+                i = input.nextInt();
+                System.out.println();
+                System.out.print("j : ");
+                j = input.nextInt();
+                System.out.println();
+            }while (!n.setO(i,j));
             n.setEtat(MINIMAX(n));
+            n.Afficher();
         }
     }
     static String[][] MINIMAX(Noeud noeud){
